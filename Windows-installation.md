@@ -1,4 +1,4 @@
-# windows-installation
+# Windows-installation
 I decided to add this note to avoid facing issues I approach trying get docker on windows up and running.
 
 Using WSL
