@@ -9,7 +9,7 @@ I decided to add this note to avoid facing issues I approach trying get docker o
 * References
 
 ### Install WSL
-1. `wsl --install` or `wsl --install -d <Distribution Name>` eg. Ubuntu, Debian, Kali
+1. `wsl --install` or `wsl --install -d <Distribution Name>` eg. `Ubuntu`, `Debian`, `Kali`
 
 or
 
