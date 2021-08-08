@@ -52,6 +52,7 @@ docker image rm -f busybox # delete image with untagging
 ### Clear
 ```sh
 docker system prune # remove stopped containers, images, volumes and cache
+docker system prune -a # remove everything
 ```
 
 ### Docker-compose
