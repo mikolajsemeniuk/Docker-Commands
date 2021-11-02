@@ -40,6 +40,8 @@ docker commit -c 'CMD ["redis-server"]' {container_id} # create new snapshot fro
 docker logs {container_id} get all logs generated from firt creating the container
 
 docker container rm {container_id} # delete container
+
+docker cp {container_id}:/container /host
 ```
 
 ### Images
