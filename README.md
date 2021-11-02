@@ -30,6 +30,10 @@ docker stop {container_id} # stop container with SIGTERM (process has a time to 
 docker kill {container_id} # top container with SIGKILL (immediately stop container and kill the proces or procesess inside container without giving process or procesess time to cleanup or save files) use when docker container is not responding
 
 docker start {container_id} # to run stopped container or use docker start -a {container_id} to output in terminal
+docker build -f {path_file}
+# map bash env variables to docker command using `$(pwd) and :/`
+# without `:` we say do not modify folder while mapping with `:/`
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app {container_id}
 
 # container must running
 # STDIN, STDOUT, STDERR
@@ -57,6 +61,9 @@ docker build -t {tag_name}
 
 ### Images
 ```sh
+docker run {image_id} {command} # example: docker run {image_id} npm run test
+# run with output
+docker run -it {image_id} {command} # example: docker run {image_id} npm run test
 docker image ls # show all downloaded images
 docker tag {container_id} {image_name} # add name to image
 docker rm { repository_name/image_name }
@@ -77,4 +84,15 @@ docker-compose stop # stop docker compose
 docker-compose start # start docker compose
 docker-compose down # remove docker compose
 docker-compose ps # show running containers in network
+```
+#### add this to run unit tests:
+```yml
+tests:
+    build:
+        context: .
+        dockerfile: Dockerfile.dev
+    volumes:
+        - /app/node_modules
+        - .:/app
+    command: ["npm", "run", "test"]
 ```
