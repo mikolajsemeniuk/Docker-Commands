@@ -96,3 +96,18 @@ tests:
         - .:/app
     command: ["npm", "run", "test"]
 ```
+## Kubernetes
+```sh
+kubectl version
+brew install minikube
+brew link --overwrite kubernetes-cli
+brew install hyperkit
+minikube start --driver=hyperkit
+minikube status
+kubectl cluster-info
+kubectl apply -f client-pod.yaml
+kubectl apply -f client-node-port.yaml
+kubectl get pods
+kubectl get services
+minikube ip
+```
