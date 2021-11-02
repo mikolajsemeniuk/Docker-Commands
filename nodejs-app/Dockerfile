@@ -10,6 +10,7 @@ FROM node:alpine
 WORKDIR /usr/app
 
 # Copy `index.js` and `package.json` to / of container
+# first `./` is container location and second `./` is host location
 COPY ./ ./
 
 # Install dependencies

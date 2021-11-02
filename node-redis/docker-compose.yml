@@ -4,7 +4,7 @@
 # docker-compose up -d --build
 
 
-version: '3'
+version: '3.8'
 services: 
     redis-server:
         image: 'redis'
@@ -13,3 +13,5 @@ services:
         restart: always # restart when container crash, other options: no (never restart on failure), on-failure (when container failure), unless-stopped (unless developer stops)
         ports: 
             - "4001:8081"
+        depends_on:
+            - redis-server

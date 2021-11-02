@@ -24,6 +24,7 @@ docker run -it alpine /bin/bash # run empty linux container with bash
 
 docker run busybox ls # run container and execute command from bash on start
 docker run busybox ping google.com # the same as above but `ping` instead of `ls`
+docker run -p 8080:8080 {image_name}
 
 docker stop {container_id} # stop container with SIGTERM (process has a time to cleanup or save files) use when docker container responds
 docker kill {container_id} # top container with SIGKILL (immediately stop container and kill the proces or procesess inside container without giving process or procesess time to cleanup or save files) use when docker container is not responding
@@ -44,9 +45,20 @@ docker container rm {container_id} # delete container
 docker cp {container_id}:/container /host
 ```
 
+### Dockerfiles
+```sh
+# build `Dockerfile` in current folder
+docker build .
+# build `Dockerfile` providing tag name
+# tag name must be in format {docker_username}/{image_name}:{tag}
+# example: mikolajsemeniuk/my_name:latest
+docker build -t {tag_name}
+```
+
 ### Images
 ```sh
 docker image ls # show all downloaded images
+docker tag {container_id} {image_name} # add name to image
 docker rm { repository_name/image_name }
 docker image rm -f busybox # delete image with untagging
 ```
