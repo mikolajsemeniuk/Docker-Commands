@@ -57,6 +57,10 @@ docker build .
 # tag name must be in format {docker_username}/{image_name}:{tag}
 # example: mikolajsemeniuk/my_name:latest
 docker build -t {tag_name}
+
+docker push {docker_username}/{repository_name}:{tag}
+# example:
+docker push mikolajsemeniuk/my_repo:latest .
 ```
 
 ### Images
@@ -98,16 +102,35 @@ tests:
 ```
 ## Kubernetes
 ```sh
-kubectl version
 brew install minikube
 brew link --overwrite kubernetes-cli
 brew install hyperkit
+
+kubectl version
+
+minikube start
 minikube start --driver=hyperkit
+
 minikube status
+
+minikube stop --all
+
 kubectl cluster-info
 kubectl apply -f client-pod.yaml
 kubectl apply -f client-node-port.yaml
+
 kubectl get pods
+kubectl get pods -o wide
 kubectl get services
+kubectl get deployments
+
+kubectl describe pod {pod_name}
+kubectl describe pod client-pod
+
+# update image when new version is push to docker hub
+kubectl set image deployment/client-deployment client=stephengrider/multi-client:v5
+
+kubectl delete -f client-pod.yaml
+
 minikube ip
 ```
