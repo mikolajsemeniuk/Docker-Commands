@@ -120,10 +120,26 @@ kubectl cluster-info
 kubectl apply -f client-pod.yaml
 kubectl apply -f client-node-port.yaml
 
+# pod is a single instance of application, containers of differenc types eg python, node -> pod -> node -> cluster
 kubectl get pods
 kubectl get pods -o wide
+kubectl get nodes
 kubectl get services
 kubectl get deployments
+
+
+# create deployment
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
+# expose deployment
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+# get url of deployment
+minikube service hello-minikube --url
+
+# remove service
+kubectl delete services hello-minikube
+# remove deployment
+kubectl delete deployment hello-minikube
+
 
 kubectl describe pod {pod_name}
 kubectl describe pod client-pod
